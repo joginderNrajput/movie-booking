@@ -36,8 +36,20 @@ const HomePage = () => {
           className="w-full h-full object-top"
         />
       </Box>
-      <Box padding={5} margin={"auto"}>
-        <Typography variant="h4" textAlign={"center"}>
+      <Box
+        sx={{
+          padding: 3,
+          margin: "auto",
+          marginBottom: "20px",
+          marginTop: " 20px",
+          width: "50vw",
+          backgroundColor: "#191970",
+          borderRadius: "10px",
+          color: "white",
+          boxShadow: "0px 2px 4px rgba(0, 0, 0, 0.25)",
+        }}
+      >
+        <Typography variant="h4" align="center">
           Latest Release
         </Typography>
       </Box>
@@ -49,7 +61,7 @@ const HomePage = () => {
         flexWrap={"wrap"}
       >
         {movies &&
-          movies.slice(0, 4).map((movie, index) => {
+          movies.slice(0, 6).map((movie, index) => {
             return (
               <MovieItem
                 key={index}
@@ -62,27 +74,26 @@ const HomePage = () => {
           })}
       </Box>
       <Box display="flex" justify="center" py={5}>
-  <Button
-    LinkComponent={Link}
-    to="/movies"
-    variant="outlined"
-    sx={{ 
-      margin: "auto",
-      color: "#2b2d42",
-      border: "1px solid #2b2d42",
-      borderRadius: "9999px",
-      padding: "10px 20px",
-      transition: "all .3s ease-in-out",
-      "&:hover": {
-        backgroundColor: "#2b2d42",
-        color: "#fff",
-      },
-    }}
-  >
-    View All Movies
-  </Button>
-</Box>
-
+        <Button
+          LinkComponent={Link}
+          to="/movies"
+          variant="outlined"
+          sx={{
+            margin: "auto",
+            color: "#2b2d42",
+            border: "1px solid #2b2d42",
+            borderRadius: "9999px",
+            padding: "10px 20px",
+            transition: "all .3s ease-in-out",
+            "&:hover": {
+              backgroundColor: "#2b2d42",
+              color: "#fff",
+            },
+          }}
+        >
+          View All Movies
+        </Button>
+      </Box>
     </Box>
   );
 };
