@@ -86,7 +86,10 @@ const Booking = () => {
             </Box>
 
             <Box className="w-1/2 pt-3 mr-10 ml-0 mt-9">
-              <form onSubmit={handleSubmit} className="p-5 mx-auto flex flex-col ">
+              <form
+                onSubmit={handleSubmit}
+                className="p-5 mx-auto flex flex-col "
+              >
                 <FormLabel className="mb-1">Seat Number</FormLabel>
                 <TextField
                   value={inputs.seatNumber}
@@ -105,8 +108,13 @@ const Booking = () => {
                 ></TextField>
                 <Button
                   type="submit"
-                  sx={{ mt: 3 }}
-                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                  sx={{
+                    mt: 3,
+                    backgroundColor: "#ffa500",
+                    "&:hover": { backgroundColor: "#191970" },
+                  }}
+                  variant="contained"
+                  color="primary"
                 >
                   Book Now
                 </Button>
