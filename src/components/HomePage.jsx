@@ -26,6 +26,7 @@ const HomePage = () => {
     "https://dyn1.heritagestatic.com/lf?set=path%5B1%2F0%2F5%2F9%2F1%2F10591649%5D%2Csizedata%5B850x600%5D&call=url%5Bfile%3Aproduct.chain%5D",
     "https://img01.products.bt.co.uk/content/dam/bt/portal/images/articles/tv/TV%20Film%20Captian%20Marvel%20Brie%20Larson%20hero.jpg",
     "https://cityspideynews.s3.amazonaws.com/uploads/spidey/202209/brahmastra-(2)-1663229520.webp",
+    "https://www.hindustantimes.com/ht-img/img/2023/03/30/550x309/Adipurush__1680145315496_1680145326338_1680145326338.jpg",
   ];
 
   useEffect(() => {
