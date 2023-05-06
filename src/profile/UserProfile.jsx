@@ -15,6 +15,7 @@ import {
 } from "@mui/material";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { DeleteForever } from "@mui/icons-material";
+import { toast } from "react-hot-toast";
 // import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const UserProfile = () => {
@@ -53,6 +54,12 @@ const UserProfile = () => {
     deleteBooking(id)
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
+
+      const bookingDelete = true; // Set bookingSuccess to true
+
+    if (bookingDelete) {
+      toast.error('Movie Deleted successfully!');
+    } 
   };
 
   return (

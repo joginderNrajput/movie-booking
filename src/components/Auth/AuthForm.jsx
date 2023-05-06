@@ -12,6 +12,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Password } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
+
 const AuthForm = ({ onSubmit, isAdmin }) => {
   const labelStyle = { mt: 1, mb: 1 };
   const [isSignUp, setIsSignUp] = useState(false);
@@ -25,7 +26,7 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
     setInputs((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,
-    }));
+    })); 
   };
 
   const handleSubmit = (e) => {
@@ -34,6 +35,18 @@ const AuthForm = ({ onSubmit, isAdmin }) => {
     onSubmit({ inputs, signup: isAdmin ? false : isSignUp });
   };
 
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   console.log("inputs", inputs);
+  //   const success = await onSubmit({ inputs, signup: isAdmin ? false : isSignUp }); 
+  //   if (success && isSignUp) {
+  //     toast.success("Signup successful!"); // Display success toast notification for signup
+  //   } else if (success && !isSignUp) {
+  //     toast.success("Login successful!"); // Display success toast notification for login
+  //   } else {
+  //     toast.error("Operation failed!"); // Display error toast notification for any failure
+  //   }
+  // };
   return (
     <Dialog PaperProps={{ style: { borderRadius: 20 } }} open={true}>
       <Box sx={{ ml: "auto", padding: 1 }}>

@@ -3,13 +3,21 @@ import React, { useEffect, useState } from "react";
 import MovieItem from "./Movies/MovieItem";
 import { Link } from "react-router-dom";
 import { getAllMovies } from "./api-helpers/api-helpers";
+import Spinner from "./Spinner";
 
 const HomePage = () => {
   const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     getAllMovies()
-      .then((data) => setMovies(data.movies))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setMovies(data.movies);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
   const [currentIndex, setCurrentIndex] = useState(0);
   const images = [
@@ -60,9 +68,14 @@ const HomePage = () => {
         width={"80%"}
         flexWrap={"wrap"}
       >
-        {movies &&
-          movies.slice(0, 6).map((movie, index) => {
-            return (
+        {loading ? (
+          <div className="mt-16 mb-16">
+            <Spinner />
+          </div>
+        ) : movies.length > 0 ? (
+          movies
+            .slice(0, 6)
+            .map((movie, index) => (
               <MovieItem
                 key={index}
                 id={movie._id}
@@ -70,8 +83,10 @@ const HomePage = () => {
                 posterUrl={movie.posterUrl}
                 releaseDate={movie.releaseDate}
               />
-            );
-          })}
+            ))
+        ) : (
+          <Typography variant="subtitle1">No movies found.</Typography>
+        )}
       </Box>
       <Box display="flex" justify="center" py={5}>
         <Button

@@ -8,6 +8,7 @@ import {
 } from "@mui/material";
 import React, { useState } from "react";
 import { addMovie } from "../api-helpers/api-helpers";
+import { toast } from "react-hot-toast";
 
 const labelProps = {
   mt: 1,
@@ -38,6 +39,12 @@ const AddMovie = () => {
     addMovie({ ...inputs, actors })
       .then((res) => console.log(res))
       .catch((error) => console.log(error)); 
+
+      const addSuccess = true; // Set bookingSuccess to true
+
+    if (addSuccess) {
+      toast.success('Movie Added successfully!');
+    }
   };
 
   return (

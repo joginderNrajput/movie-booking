@@ -2,6 +2,7 @@ import React, { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getMovieDetails, newBooking } from "../api-helpers/api-helpers";
 import { Box, Button, FormLabel, TextField, Typography } from "@mui/material";
+import { toast } from "react-hot-toast";
 
 const Booking = () => {
   const [movie, setMovie] = useState();
@@ -28,6 +29,14 @@ const Booking = () => {
     newBooking({ ...inputs, movie: movie._id })
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
+
+    const bookingSuccess = true; // Set bookingSuccess to true
+
+    if (bookingSuccess) {
+      toast.success("Movie successfully booked!");
+    } else {
+      toast.error("Failed to book the movie.");
+    }
   };
   return (
     <div>

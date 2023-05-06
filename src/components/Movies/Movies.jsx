@@ -1,16 +1,25 @@
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, CircularProgress } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { getAllMovies } from "../api-helpers/api-helpers";
 import MovieItem from "./MovieItem";
+import Spinner from "../Spinner"; // Import your custom Spinner component
 
 const Movies = () => {
-  const [movies, setMovies] = useState();
+  const [movies, setMovies] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getAllMovies()
-      .then((data) => setMovies(data.movies))
-      .catch((error) => console.log(error));
+      .then((data) => {
+        setMovies(data.movies);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setLoading(false);
+      });
   }, []);
+
   return (
     <Box margin={"auto"} marginTop={4}>
       <Typography
@@ -25,16 +34,30 @@ const Movies = () => {
       >
         All Movies
       </Typography>
-      <Box
-        width="100%"
-        margin={"auto"}
-        marginTop={5}
-        display={"flex"}
-        justifyContent={"center"}
-        flexWrap={"wrap"}
-      >
-        {movies &&
-          movies.map((movie, index) => (
+      {loading ? (
+        <Box
+          width="100%"
+          margin={"auto"}
+          display="flex"
+          justifyContent="center"
+          alignItems="center"
+          minHeight="200px"
+        >
+          <Spinner />
+          <div className="mt-[90px] font-bold">
+            <Typography>Loading...</Typography>
+          </div>
+        </Box>
+      ) : (
+        <Box
+          width="100%"
+          margin={"auto"}
+          marginTop={5}
+          display={"flex"}
+          justifyContent={"center"}
+          flexWrap={"wrap"}
+        >
+          {movies.map((movie, index) => (
             <MovieItem
               key={index}
               id={movie._id}
@@ -43,7 +66,8 @@ const Movies = () => {
               title={movie.title}
             />
           ))}
-      </Box>
+        </Box>
+      )}
     </Box>
   );
 };
