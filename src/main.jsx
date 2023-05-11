@@ -8,8 +8,8 @@ import { Provider } from "react-redux";
 import { store } from "./store/store";
 import { Toaster } from "react-hot-toast";
 
-// axios.defaults.baseURL = "https://movie-website-backend.onrender.com";
-axios.defaults.baseURL = "http://localhost:5000";
+axios.defaults.baseURL = "https://movie-website-backend.onrender.com";
+// axios.defaults.baseURL = "http://localhost:5000";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <BrowserRouter>
     <Provider store={store}>
