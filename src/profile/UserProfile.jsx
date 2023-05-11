@@ -16,12 +16,12 @@ import {
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import { DeleteForever } from "@mui/icons-material";
 import { toast } from "react-hot-toast";
-// import DeleteForeverIcon from "@mui/icons-material/DeleteForever";
 
 const UserProfile = () => {
-  const [bookings, setBookings] = useState();
-  const [user, setUser] = useState();
-  const [movies, setMovies] = useState();
+  const [bookings, setBookings] = useState([]);
+  const [user, setUser] = useState(null);
+  const [movies, setMovies] = useState({});
+
   useEffect(() => {
     getUserBooking()
       .then((res) => {
@@ -39,33 +39,27 @@ const UserProfile = () => {
         });
       })
       .catch((error) => console.log(error));
-    getUserBooking()
-      .then((res) => setBookings(res.bookings))
-      .catch((error) => console.log(error));
 
     getUserDetails()
       .then((res) => setUser(res.user))
       .catch((error) => console.log(error));
   }, []);
 
-  console.log(bookings);
-
   const handleDelete = (id) => {
     deleteBooking(id)
       .then((res) => console.log(res))
       .catch((error) => console.log(error));
 
-      const bookingDelete = true; // Set bookingSuccess to true
+    const bookingDelete = true; // Set bookingSuccess to true
 
     if (bookingDelete) {
-      toast.error('Movie Deleted successfully!');
-    } 
+      toast.error("Movie Deleted successfully!");
+    }
   };
 
   return (
     <Box width={"100%"} display="flex">
       <Fragment>
-        {" "}
         {user && (
           <Box
             flexDirection={"column"}
@@ -84,7 +78,7 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Name : {user.name}{" "}
+              Name: {user.name}
             </Typography>
             <Typography
               mt={1}
@@ -94,11 +88,11 @@ const UserProfile = () => {
               border={"1px solid #ccc"}
               borderRadius={6}
             >
-              Email : {user.email}{" "}
+              Email: {user.email}
             </Typography>
           </Box>
         )}
-        {bookings && bookings.length > 0 && (
+        {bookings.length > 0 && (
           <Box width={"70%"} display={"flex"} flexDirection={"column"}>
             <Typography
               variant="h3"
@@ -128,18 +122,18 @@ const UserProfile = () => {
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
-                      {/* Movie : {booking.movie.title} */}
-                      Movie : {booking.movie.title}
+                      Movie: {movies[booking.movie
+                      ] ? movies[booking.movie].title : ""}
                     </ListItemText>
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
-                      Seat Number : {booking.seatNumber}
+                      Seat Number: {booking.seatNumber}
                     </ListItemText>
                     <ListItemText
                       sx={{ margin: 1, width: "auto", textAlign: "left" }}
                     >
-                      Date : {new Date(booking.date).toDateString()}
+                      Date: {new Date(booking.date).toDateString()}
                     </ListItemText>
                     <IconButton
                       onClick={() => handleDelete(booking._id)}
